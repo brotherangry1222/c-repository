@@ -1,0 +1,87 @@
+구조체와 함수 (ex1.c / ex2.c) 아래 두 소스 코드를 참고하여 문제를 푸세요.
+
+ex1.c #include <stdio.h>
+
+struct Player { char name[20]; int level; };
+
+void showPlayer(struct Player p) { printf("ID : %s, Level : %d\n", p.name, p.level); }
+
+void levelUp(struct Player p) { p.level = 20; }
+
+int main(void) { struct Player p1 = {"Hero", 10};
+
+showPlayer(p1);
+  levelUp(p1);
+  showPlayer(p1);
+  return 0;
+
+}
+
+ex2.c #include <stdio.h>
+
+struct Player { char name[20]; int level; };
+
+void showPlayer(struct Player* p) { printf("ID : %s, Level : %d\n", p->name, p->level); }
+
+void levelUp(struct Player* p) { p->level = 20; }
+
+int main(void) { struct Player p1 = {"Hero", 10};
+
+showPlayer(&p1);
+  levelUp(&p1);
+  showPlayer(&p1);
+  return 0;
+
+}
+
+문제 1 ex1.c를 컴파일하고 실행했을 때 출력 결과로 올바른 것은?
+
+① ID : Hero, Level : 10 ID : Hero, Level : 20
+
+② ID : Hero, Level : 10 ID : Hero, Level : 10
+
+③ ID : Hero, Level : 20 ID : Hero, Level : 20
+
+④ ID : Hero, Level : 20 ID : Hero, Level : 10
+
+문제 2 ex1.c에서 levelUp() 함수를 호출한 뒤에도 main() 함수의 p1.level이 10으로 유지되는 이유로 가장 적절한 것은?
+
+① 구조체 변수는 선언 후 값을 변경하는 것이 문법상 불가능하기 때문이다.
+
+② 함수 호출 시 변수의 복사본이 전달되어, 함수 내부에서는 복사본만 수정되기 때문이다.
+
+③ levelUp() 함수의 반환형이 void이므로 내부의 모든 연산이 무시되기 때문이다.
+
+④ main() 함수의 p1은 지역 변수이므로 어떤 방법으로도 외부 함수에서 접근할 수 없기 때문이다.
+
+문제 3 ex2.c를 컴파일하고 실행했을 때 출력 결과로 올바른 것은?
+
+① ID : Hero, Level : 10 ID : Hero, Level : 10
+
+② ID : Hero, Level : 20 ID : Hero, Level : 10
+
+③ ID : Hero, Level : 10 ID : Hero, Level : 20
+
+④ ID : Hero, Level : 20 ID : Hero, Level : 20
+
+문제 4 ex2.c의 levelUp() 함수 내 p->level = 20;에서 사용된 화살표 연산자(->)와 동일한 동작을 수행하는 표현은?
+
+① *p.level = 20;
+
+② (*p).level = 20;
+
+③ &p.level = 20;
+
+④ p.*level = 20;
+
+문제 5 ex1.c와 ex2.c의 차이에 대한 설명으로 옳지 않은 것은?
+
+① ex1.c는 '값에 의한 호출(Call by Value)' 방식으로, 원본 데이터가 안전하게 보호된다.
+
+② ex2.c는 주소 연산자(&)를 이용해 원본 구조체의 메모리 주소를 전달한다.
+
+③ 구조체 멤버의 크기가 매우 큰 경우, 전체를 복사하는 ex1.c보다 주소만 전달하는 ex2.c가 메모리와 속도 측면에서 효율적이다.
+
+④ ex2.c처럼 구조체 포인터를 매개변수로 사용하더라도, 함수 내부에서 원본 값을 수정하는 것은 불가능하다.
+
+정답 및 해설 문제 정답 1 ② 2 ② 3 ③ 4 ② 5 ④
